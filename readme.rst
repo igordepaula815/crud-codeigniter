@@ -1,71 +1,98 @@
-###################
-What is CodeIgniter
-###################
+🛡️ Painel de Controle de Usuários com Autenticação
+📝 Descrição do Projeto
+Este projeto implementa um painel de controle completo para gerenciamento de usuários, desenvolvido utilizando o framework CodeIgniter 3 (PHP 7+) e a biblioteca de interface Bootstrap 5. O sistema oferece funcionalidades essenciais de CRUD (Criar, Ler, Atualizar e Excluir) para um cadastro de usuários, além de um sistema de autenticação robusto para proteger o acesso administrativo.
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+✨ Funcionalidades Principais
+Listagem de Usuários Ativos: Exibe uma tabela responsiva com todos os usuários cadastrados e ativos no sistema.
 
-*******************
-Release Information
-*******************
+Cadastro Simplificado de Usuários: Formulário intuitivo para adicionar novos usuários, com validação abrangente de campos obrigatórios, formato de email e garantia de unicidade para CPF e endereço de email.
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Edição Detalhada de Usuários: Permite a modificação dos dados de usuários existentes através de um formulário pré-populado, mantendo as mesmas regras de validação do cadastro.
 
-**************************
-Changelog and New Features
-**************************
+Exclusão Lógica Inteligente: Implementa a exclusão lógica de usuários, preservando a integridade dos dados ao invés da remoção física. Os registros são marcados como excluídos através da coluna deleted_at.
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Sistema de Autenticação Seguro: Protege o acesso ao painel administrativo por meio de um sistema de login baseado em email e senha, com armazenamento seguro de senhas utilizando criptografia.
 
-*******************
-Server Requirements
-*******************
+Funcionalidade de Logout: Permite que o administrador encerre a sessão de forma segura.
 
-PHP version 5.6 or newer is recommended.
+Validação de Formulários Integrada: Utilização da poderosa biblioteca de validação do CodeIgniter para assegurar a consistência e a integridade dos dados submetidos.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Máscaras de Input para Usabilidade: Aplicação de máscaras nos campos de CPF e celular, proporcionando uma experiência de entrada de dados mais fluida e prevenindo erros comuns.
 
-************
-Installation
-************
+⚙️ Pré-requisitos
+PHP: Versão 7.0 ou superior.
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+Composer: Gerenciador de dependências do PHP (geralmente instalado por padrão).
 
-*******
-License
-*******
+Servidor Web: Apache ou Nginx (configurado para processar arquivos PHP).
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+Banco de Dados: MySQL (ou outro banco de dados compatível com CodeIgniter).
 
-*********
-Resources
-*********
+CodeIgniter 3: O framework PHP utilizado na construção do projeto.
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+🚀 Instalação e Configuração
+Obtenha o Código Fonte:
+Clone este repositório para o seu ambiente de desenvolvimento local:
+```bash
+git clone URL_DO_SEU_REPOSITORIO.git
+```
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+Configure o Banco de Dados:
 
-***************
-Acknowledgement
-***************
+Crie um novo banco de dados no seu servidor MySQL (ou similar) com o nome de sua preferência (ex: painel_controle_db).
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+Importe o conteúdo do arquivo database.sql, localizado na raiz do projeto, para dentro do banco de dados recém-criado. Este script contém a estrutura das tabelas usuarios e admins.
+
+Ajustes de Configuração do CodeIgniter:
+
+Navegue até o diretório application/config/ dentro da pasta do seu projeto.
+
+config.php: Edite este arquivo para definir a base_url com o endereço URL do seu projeto no ambiente local (ex: http://localhost/painel-controle/).
+
+database.php: Configure as credenciais de conexão com o seu banco de dados:
+
+hostname: localhost (valor padrão)
+
+username: SEU_USUARIO_DO_BANCO
+
+password: SUA_SENHA_DO_BANCO
+
+database: NOME_DO_BANCO_DE_DADOS
+
+dbdriver: mysqli (para MySQL)
+
+Execute a Aplicação:
+
+Garanta que o seu servidor web (Apache ou Nginx) esteja em execução e configurado para apontar para a pasta raiz do seu projeto.
+
+Acesse o painel de controle através do seu navegador utilizando a base_url configurada no passo anterior.
+
+🔑 Acesso ao Painel Administrativo
+Para acessar a área de login do painel de controle, direcione seu navegador para o URL da sua aplicação (ex: http://localhost/painel-controle/).
+
+Utilize as seguintes credenciais padrão para o administrador:
+
+Email: admin@painel.com
+
+Senha: admin123
+(A senha é armazenada de forma segura e criptografada no banco de dados.)
+
+📂 Estrutura de Pastas do Projeto
+application/controllers/: Contém os controladores (Auth.php, Usuarios.php) que orquestram a lógica da aplicação e a interação com o Model e as Views.
+
+application/models/: Armazena os models (Usuario_model.php) responsáveis pela comunicação e manipulação dos dados no banco de dados.
+
+application/views/: Organiza os arquivos de visualização (HTML) da aplicação, separados em diretórios como auth (para autenticação), usuarios (para gerenciamento de usuários) e templates (para layouts reutilizáveis).
+
+application/config/: Contém os arquivos de configuração do framework CodeIgniter.
+
+database.sql: Script SQL para a criação das tabelas usuarios e admins no banco de dados.
+
+README.md: Este arquivo, fornecendo informações essenciais sobre o projeto.
+
+.htaccess: Arquivo de configuração para o servidor Apache (pode ser utilizado para remover a necessidade de index.php nas URLs).
+
+📌 Observações Importantes
+Este projeto foi desenvolvido com fins educacionais e demonstra a implementação de um conjunto básico de funcionalidades CRUD com autenticação, utilizando o framework CodeIgniter 3 e o framework de interface Bootstrap 5.
+
+Em um ambiente de produção real, é crucial implementar medidas de segurança adicionais para proteger a aplicação contra vulnerabilidades.
